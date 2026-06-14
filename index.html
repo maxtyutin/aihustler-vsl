@@ -1,0 +1,525 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Бесплатный курс по запуску AI-агентства в России. Узнайте, как зарабатывать на автоматизации маркетинга с помощью нейросетей.">
+  <title>AI Advertiser — Готовый бизнес на нейросетях в РФ бесплатно</title>
+  
+  <!-- Preload fonts and styles -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">
+  
+  <!-- Favicon -->
+  <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF631F'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/></svg>">
+</head>
+<body class="fbz">
+
+  <!-- Background decorative glows -->
+  <div class="glow-bg">
+    <div class="glow-circle glow-orange"></div>
+    <div class="glow-circle glow-purple"></div>
+  </div>
+
+  <!-- Navigation -->
+  <nav class="nav">
+    <div class="nav-in">
+      <a href="#" class="header-logo">
+        <svg class="tg-logo-svg" viewBox="0 0 24 24" fill="currentColor">
+          <path d="M12 2L2 22L12 18L22 22L12 2Z"/>
+        </svg>
+        <span class="logo-text">AI Advertiser</span>
+      </a>
+      <div class="nav-links">
+        <a href="#value">Что внутри</a>
+        <a href="#why">Почему это работает</a>
+        <a href="#tools">Инструменты</a>
+        <a href="#faq">Вопросы</a>
+      </div>
+    </div>
+  </nav>
+
+  <!-- Hero Section -->
+  <header class="hero">
+    <div class="wrap">
+      <span class="tag-eyebrow">AI ADVERTISER STARTER · БЕСПЛАТНЫЙ ДОСТУП</span>
+      <h1 class="display">Раньше я продавал эту систему за 150 000 ₽. Сейчас вы можете забрать её бесплатно!</h1>
+      <p class="sub body-l">Посмотрите видео ниже, чтобы получить пошаговую систему запуска AI-агентства в РФ.</p>
+      
+      <div class="chips">
+        <span class="pill-lime">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg> 
+          Не нужны навыки программирования
+        </span>
+        <span class="pill-lime">
+          <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+            <polyline points="20 6 9 17 4 12"></polyline>
+          </svg> 
+          Без опыта в маркетинге
+        </span>
+      </div>
+
+      <!-- Video Player container -->
+      <div class="video-wrap" id="videoContainer">
+        <div class="video-overlay" id="videoOverlay">
+          <div class="play-btn">
+            <svg viewBox="0 0 24 24" fill="currentColor" width="36" height="36">
+              <path d="M8 5V19L19 12L8 5Z"/>
+            </svg>
+          </div>
+          <span class="video-duration">10:42</span>
+          <span class="video-hint">Нажмите, чтобы включить презентацию</span>
+        </div>
+        <!-- Stylized local video or placeholder iframe -->
+        <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" title="AI Advertiser Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+      </div>
+
+      <button class="btn-primary open-modal-btn" type="button">Получить систему бесплатно</button>
+
+      <div class="proof">
+        <div class="avs">
+          <div class="av av-1">ИИ</div>
+          <div class="av av-2">АД</div>
+          <div class="av av-3">РФ</div>
+        </div>
+        <span class="tp">
+          <span class="tp-star">
+            <svg viewBox="0 0 24 24" width="15" height="15">
+              <polygon fill="#fff" points="12,3 14.6,9.1 21.2,9.6 16.2,13.9 17.8,20.4 12,16.8 6.2,20.4 7.8,13.9 2.8,9.6 9.4,9.1"></polygon>
+            </svg>
+          </span>
+          <b class="tp-name">Оценка 4.9/5</b>
+          <span class="body-s muted tp-meta">Более 2 000 учеников</span>
+        </span>
+      </div>
+    </div>
+  </header>
+
+  <!-- Value Stack Section -->
+  <section id="value" class="sec">
+    <div class="wrap maxw920">
+      <div class="vcard">
+        <div class="vhead">
+          <span class="logo-badge">
+            <span class="badge-text">AI Advertiser Starter</span>
+          </span>
+        </div>
+        <div class="vsep"></div>
+        
+        <div class="vrow">
+          <span class="vlabel">Пошаговая система «AI-Рекламодатель»</span>
+          <span class="leader"></span>
+          <span class="vpill">35 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">3-дневный практический воркшоп под ключ</span>
+          <span class="leader"></span>
+          <span class="vpill">20 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Модуль по локальному трафику (Яндекс, VK, Авито)</span>
+          <span class="leader"></span>
+          <span class="vpill">15 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Модуль по интеграции ИИ и автоматизации процессов</span>
+          <span class="leader"></span>
+          <span class="vpill">15 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Практикум борьбы с прокрастинацией («Выход из наблюдателя»)</span>
+          <span class="leader"></span>
+          <span class="vpill">10 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Система привлечения клиентов (скрипты + шаблоны офферов)</span>
+          <span class="leader"></span>
+          <span class="vpill">20 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Готовые AI-агенты для автопоиска лидов в РФ</span>
+          <span class="leader"></span>
+          <span class="vpill">15 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">Библиотека шаблонов ИИ-лендингов и чат-ботов</span>
+          <span class="leader"></span>
+          <span class="vpill">20 000 ₽</span>
+        </div>
+        <div class="vrow">
+          <span class="vlabel">1-в-1 вводная сессия с куратором нашей команды</span>
+          <span class="leader"></span>
+          <span class="vpill">10 000 ₽</span>
+        </div>
+        
+        <div class="vsep"></div>
+        <div class="vrow vtotal">
+          <span class="vlabel">Итоговая ценность</span>
+          <span class="leader"></span>
+          <span class="vstrike">160 000 ₽</span>
+        </div>
+        <div class="vrow vtotal">
+          <span class="vlabel">Ваша цена</span>
+          <span class="leader"></span>
+          <span class="vfree">БЕСПЛАТНО</span>
+        </div>
+        <p class="vnote">Эта система не будет бесплатной вечно. Заберите её сейчас, пока открыт доступ.</p>
+      </div>
+      
+      <div class="center mt40">
+        <button class="btn-primary open-modal-btn" type="button">Получить бесплатный доступ</button>
+      </div>
+    </div>
+  </section>
+
+  <div class="wrap"><div class="divider"></div></div>
+
+  <!-- Explanation Section -->
+  <section class="sec">
+    <div class="wrap">
+      <div class="split">
+        <div class="split-text">
+          <div class="eyebrow mb16">Без подвоха</div>
+          <h2 class="h2-48 mb24">Почему это бесплатно?</h2>
+          <p class="body-l mb16">Более <b>2 000 человек</b> уже купили эту модель в формате платного коучинга. У вас наверняка возникает логичный вопрос: <i>«В чем тогда смысл отдавать это бесплатно?»</i></p>
+          <p class="body-l mb16">Всё прозрачно. Мы заключили партнерское соглашение с крупной российской IT-платформой для автоматизации маркетинга и интеграций. Платформа выплачивает нам процент, когда наши ученики настраивают на ней автоматизацию для своих клиентов.</p>
+          <p class="body-l mb32"><b>Это чистый win-win:</b> вы бесплатно получаете готовую модель заработка, платформа получает активных клиентов, а мы получаем комиссию. Все в плюсе.</p>
+          <button class="btn-primary open-modal-btn" type="button">Узнать подробнее</button>
+        </div>
+        <div class="split-img">
+          <!-- Stylized container representing visual dashboards & integration -->
+          <div class="dashboard-preview">
+            <div class="dash-header">
+              <span class="dot red"></span><span class="dot yellow"></span><span class="dot green"></span>
+              <span class="dash-title">AI Integration Hub</span>
+            </div>
+            <div class="dash-body">
+              <div class="dash-node">
+                <span class="node-icon font-alt">VK</span>
+                <span class="node-label">VK Ads</span>
+              </div>
+              <div class="dash-arrow">➔</div>
+              <div class="dash-node primary-node">
+                <span class="node-icon font-alt">AI</span>
+                <span class="node-label">Анализатор лидов</span>
+              </div>
+              <div class="dash-arrow">➔</div>
+              <div class="dash-node">
+                <span class="node-icon font-alt">TG</span>
+                <span class="node-label">Бот-продавец</span>
+              </div>
+            </div>
+            <div class="dash-metrics">
+              <div class="metric-card">
+                <span class="m-val">94.8%</span>
+                <span class="m-lbl">Точность ИИ</span>
+              </div>
+              <div class="metric-card">
+                <span class="m-val">15 мин</span>
+                <span class="m-lbl">Настройка</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Why the model works -->
+  <section id="why" class="sec band">
+    <div class="wrap">
+      <div class="eyebrow center mb16">Бизнес-модель</div>
+      <h2 class="h2-48 center mb14">Почему модель AI-агентства работает в России:</h2>
+      <p class="body-l muted mx maxw600 mb48 center">Вам не нужно создавать сложный софт или закупать товар. Вы просто соединяете копеечные технологии ИИ с бизнесом, которому жизненно нужны клиенты.</p>
+      
+      <div class="g3 whyg">
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="2" y="6" width="20" height="12" rx="2"></rect>
+                <circle cx="12" cy="12" r="2.5"></circle>
+                <path d="M6 12h.01M18 12h.01"></path>
+              </svg>
+            </span>
+            <span class="whynum">01</span>
+          </div>
+          <h3 class="h3-22 mb8">Без создания продукта</h3>
+          <p class="body-m muted m0">Вы выступаете посредником. Подключаете готовые ИИ-решения компаниям, которые отчаянно ищут новых покупателей.</p>
+        </div>
+
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="4" width="18" height="12" rx="1.5"></rect>
+                <path d="M2 20h20"></path>
+              </svg>
+            </span>
+            <span class="whynum">02</span>
+          </div>
+          <h3 class="h3-22 mb8">Полная удаленка</h3>
+          <p class="body-m muted m0">Ноутбук, смартфон и стабильный интернет — это весь ваш офис. Работайте из любого города России.</p>
+        </div>
+
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="4" y="8" width="16" height="11" rx="2"></rect>
+                <path d="M12 8V4M9 13h.01M15 13h.01"></path>
+              </svg>
+            </span>
+            <span class="whynum">03</span>
+          </div>
+          <h3 class="h3-22 mb8">Вся рутина на нейросетях</h3>
+          <p class="body-m muted m0">ИИ самостоятельно собирает базы клиентов, проверяет их рекламу на ошибки и пишет персонализированные предложения.</p>
+        </div>
+
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M12 3v4M12 17v4M3 12h4M17 12h4"></path>
+              </svg>
+            </span>
+            <span class="whynum">04</span>
+          </div>
+          <h3 class="h3-22 mb8">Минимальные вложения</h3>
+          <p class="body-m muted m0">Никаких трат на закупку товаров или тесты. Для привлечения первых клиентов используются бесплатные алгоритмы аудита.</p>
+        </div>
+
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M17 2l3 3-3 3M4 11V9a4 4 0 0 1 4-4h12"></path>
+              </svg>
+            </span>
+            <span class="whynum">05</span>
+          </div>
+          <h3 class="h3-22 mb8">Регулярный доход</h3>
+          <p class="body-m muted m0">Локальному бизнесу (ремонт, медицина, бьюти-сфера) нужны клиенты постоянно, а не разово. Они платят каждый месяц за поддержку.</p>
+        </div>
+
+        <div class="whycard">
+          <div class="whytop">
+            <span class="whyicon">
+              <svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="1.9" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M3 17l6-6 4 4 7-7M14 7h6v6"></path>
+              </svg>
+            </span>
+            <span class="whynum">06</span>
+          </div>
+          <h3 class="h3-22 mb8">Свободный рынок</h3>
+          <p class="body-m muted m0">Более 90% малого бизнеса в РФ до сих пор понятия не имеют, как внедрить ИИ для экономии бюджета и генерации лидов. Вы будете первыми.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Ready to Run steps -->
+  <section class="sec">
+    <div class="wrap center">
+      <div class="eyebrow mb16">Как запустить</div>
+      <h2 class="h2-48 mb14">Полностью готовый бизнес-процесс</h2>
+      <p class="body-l muted mx maxw600 mb48">Без долгого изучения программирования и теории. Всё разложено по шагам.</p>
+      
+      <div class="g3 tleft">
+        <div class="card feat-card">
+          <div class="feat-graphic-placeholder">
+            <svg viewBox="0 0 100 100" class="graphic-svg" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="50" cy="50" r="30" stroke-dasharray="5 5"></circle>
+              <circle cx="50" cy="50" r="10" fill="var(--cta-primary)"></circle>
+              <line x1="50" y1="10" x2="50" y2="90"></line>
+              <line x1="10" y1="50" x2="90" y2="50"></line>
+            </svg>
+          </div>
+          <div class="feat-body">
+            <h3 class="h3-22 mb8">Шаг 1. Поиск клиентов</h3>
+            <p class="body-m muted m0">ИИ-агент автоматически сканирует базы организаций в выбранном городе, находит тех, у кого слабая реклама или нет чат-ботов, и готовит отчет.</p>
+          </div>
+        </div>
+
+        <div class="card feat-card">
+          <div class="feat-graphic-placeholder">
+            <svg viewBox="0 0 100 100" class="graphic-svg" fill="none" stroke="currentColor" stroke-width="2">
+              <rect x="25" y="25" width="50" height="50" rx="10"></rect>
+              <path d="M35 50h30M50 35v30" stroke="var(--accent-lime-border)"></path>
+            </svg>
+          </div>
+          <div class="feat-body">
+            <h3 class="h3-22 mb8">Шаг 2. Настройка ИИ</h3>
+            <p class="body-m muted m0">Вы подключаете готовые сценарии автоответов и генерации креативов. Система создает заголовки и баннеры для Яндекса и VK за минуты.</p>
+          </div>
+        </div>
+
+        <div class="card feat-card">
+          <div class="feat-graphic-placeholder">
+            <svg viewBox="0 0 100 100" class="graphic-svg" fill="none" stroke="currentColor" stroke-width="2">
+              <circle cx="50" cy="50" r="25"></circle>
+              <path d="M40 50l7 7 13-13" stroke="var(--cta-primary)" stroke-width="3"></path>
+            </svg>
+          </div>
+          <div class="feat-body">
+            <h3 class="h3-22 mb8">Шаг 3. Закрытие сделки</h3>
+            <p class="body-m muted m0">С помощью проверенных скриптов вы отправляете готовый бесплатный аудит владельцу бизнеса. Они видят ценность и сразу соглашаются на платное ведение.</p>
+          </div>
+        </div>
+      </div>
+      
+      <div class="center mt40">
+        <button class="btn-primary open-modal-btn" type="button">Начать бесплатно</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Interactive roller section for built-in tools -->
+  <section id="tools" class="sec band">
+    <div class="wrap">
+      <div class="tools-row">
+        <div class="tools-head">
+          <h2 class="h2-48">Все встроенные инструменты</h2>
+          <svg class="tools-arrow" viewBox="0 0 140 70" fill="none" aria-hidden="true">
+            <path d="M6 26 C 44 2, 96 6, 128 38" stroke="url(#tg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M128 38 L 108 35" stroke="url(#tg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <path d="M128 38 L 121 19" stroke="url(#tg)" stroke-width="4" stroke-linecap="round" stroke-linejoin="round"></path>
+            <defs>
+              <linearGradient id="tg" x1="0" y1="0" x2="140" y2="0">
+                <stop stop-color="#FF631F"></stop>
+                <stop offset="1" stop-color="#a855f7"></stop>
+              </linearGradient>
+            </defs>
+          </svg>
+        </div>
+        
+        <div class="roller" id="rollerContainer">
+          <div class="roller-track" id="rollerTrack">
+            <div class="roller-item">AI Суперагенты</div>
+            <div class="roller-item">ИИ-Конструктор сайтов</div>
+            <div class="roller-item">ИИ-Конструктор чат-ботов</div>
+            <div class="roller-item">Авто-поиск лидов в РФ</div>
+            <div class="roller-item">Калькулятор ROAS</div>
+            <div class="roller-item">Анализатор рекламного бюджета</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FAQ Section -->
+  <section id="faq" class="sec">
+    <div class="wrap maxw820">
+      <div class="eyebrow center mb16">Ответы на вопросы</div>
+      <h2 class="h2-48 center mb48">Часто задаваемые вопросы</h2>
+      
+      <div class="faq-list">
+        <details class="qa">
+          <summary>Мне действительно не нужно уметь программировать? <span class="plus">+</span></summary>
+          <div class="ans">Абсолютно нет. Все современные ИИ-инструменты работают на понятном русском языке (no-code). Мы даем уже готовые преднастроенные шаблоны ботов и связок автоматизации, которые настраиваются копированием.</div>
+        </details>
+        <details class="qa">
+          <summary>Сколько времени потребуется для первого заработка? <span class="plus">+</span></summary>
+          <div class="ans">Большинство наших учеников закрывают первого клиента на платную подписку уже во время прохождения 3-дневного практического воркшопа, так как мы даем детальные скрипты переписки и бесплатный метод аудита.</div>
+        </details>
+        <details class="qa">
+          <summary>Работает ли это в регионах РФ или только в Москве? <span class="plus">+</span></summary>
+          <div class="ans">Это работает по всей России. Более того, в регионах конкуренция среди диджитал-специалистов минимальна, а малый бизнес (клиники, салоны, локальный ремонт) крайне нуждается в оптимизации затрат на рекламу.</div>
+        </details>
+        <details class="qa">
+          <summary>Какие инструменты мне понадобятся для работы? <span class="plus">+</span></summary>
+          <div class="ans">Мы используем доступный стек без VPN и зарубежных карт: российские платформы интеграции, Telegram-ботов и удобные русскоязычные кабинеты для нейросетей. Весь софт мы детально разберем на обучении.</div>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- Final CTA Callout -->
+  <section class="sec claim">
+    <div class="wrap">
+      <h2 class="h2-56 claim-h">Начните свой бизнес на ИИ прямо сегодня</h2>
+      <p class="body-l muted maxw600 mx mb32">Заберите полную систему и воркшоп бесплатно, пока открыта регистрация.</p>
+      
+      <div class="claim-card">
+        <div class="claim-logo-wrap">
+          <span class="logo-badge-dark">AI ADVERTISER STARTER</span>
+        </div>
+        <div class="claim-price">
+          <span class="claim-was">150 000 ₽</span>
+          <span class="claim-now">0 ₽</span>
+          <span class="claim-now-label">ПОЛНЫЙ ДОСТУП</span>
+        </div>
+        <div class="claim-feats">
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> 
+            9 модулей обучения
+          </span>
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> 
+            Личный разбор с куратором
+          </span>
+          <span>
+            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="3" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="20 6 9 17 4 12"></polyline>
+            </svg> 
+            Готовые ИИ-скрипты
+          </span>
+        </div>
+        <button class="btn-primary full open-modal-btn" type="button">Забрать обучение бесплатно</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="foot">
+    <div class="wrap">
+      <span class="logo-text">AI Advertiser &copy; 2026</span>
+      <div class="flinks">
+        <a href="#">Политика конфиденциальности</a>
+        <a href="#">Пользовательское соглашение</a>
+        <a href="#">Отказ от ответственности</a>
+      </div>
+      <p class="disc">Вся информация на данном сайте предназначена исключительно для ознакомительных целей. Мы не гарантируем конкретных финансовых результатов. Результаты каждого ученика зависят от приложенных усилий, опыта и дисциплины.</p>
+    </div>
+  </footer>
+
+  <!-- Lead Modal Overlay -->
+  <div class="fbm-overlay" id="leadModal">
+    <div class="fbm">
+      <button class="fbm-close" id="closeModalBtn" type="button">&times;</button>
+      <div class="fbm-logo-wrap">
+        <span class="logo-text font-alt">Регистрация в системе</span>
+      </div>
+      <span class="eyebrow mb8">Получите бесплатную систему</span>
+      <h3 class="h3-22 mb20">Введите ваши данные, чтобы открыть доступ к обучению:</h3>
+      
+      <form class="fbm-form" id="leadForm">
+        <input class="fbm-input" type="text" placeholder="Ваше имя" required id="leadName">
+        <input class="fbm-input" type="email" placeholder="Ваш Email" required id="leadEmail">
+        
+        <div class="fbm-phone">
+          <select class="fbm-country" id="leadCountry">
+            <option value="RU" selected>🇷🇺 +7</option>
+            <option value="BY">🇧🇾 +375</option>
+            <option value="KZ">🇰🇿 +7</option>
+          </select>
+          <input class="fbm-input fbm-phone-input" type="tel" placeholder="Номер телефона" required id="leadPhone">
+        </div>
+        
+        <button class="btn-primary" type="submit" id="submitBtn">Зарегистрироваться бесплатно</button>
+        <p class="fbm-consent">Регистрируясь, вы соглашаетесь с обработкой персональных данных и условиями сервиса.</p>
+      </form>
+    </div>
+  </div>
+
+  <script src="app.js"></script>
+</body>
+</html>
