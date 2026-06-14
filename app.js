@@ -51,7 +51,7 @@ document.addEventListener('DOMContentLoaded', () => {
             <polyline points="22 4 12 14.01 9 11.01"></polyline>
           </svg>
           <h3 class="h3-22 mb8">Регистрация успешна!</h3>
-          <p class="body-m muted mb20">Система AI Advertiser Starter отправлена вам. Проверьте ваш Telegram или перейдите по ссылке ниже:</p>
+          <p class="body-m muted mb20">Система AI HUSTLER отправлена вам. Проверьте ваш Telegram или перейдите по ссылке ниже:</p>
           <a href="https://t.me/ai_hustlers_bot" target="_blank" class="btn-primary" style="text-decoration:none; animation:none; width:100%; display:flex;">
             Открыть обучение в Telegram
           </a>
@@ -76,33 +76,51 @@ document.addEventListener('DOMContentLoaded', () => {
     }
   });
 
-  // 3. Dynamic Vertical Tools Roller
-  const rollerTrack = document.getElementById('rollerTrack');
-  const items = Array.from(rollerTrack.querySelectorAll('.roller-item'));
-  let currentIndex = 0;
-
-  // Clone items to fill space and enable infinite loops if needed
-  const itemHeight = 76; // item height + gap
-
-  const updateRoller = () => {
-    // Highlight the active item
-    items.forEach((item, idx) => {
-      if (idx === currentIndex) {
-        item.classList.add('on');
-      } else {
-        item.classList.remove('on');
+  // 3. Dynamic Image Autoloader Helper for user screenshots & dashboard
+  function initAutoloader(selector) {
+    const images = document.querySelectorAll(selector);
+    images.forEach(img => {
+      const baseName = img.getAttribute('data-base');
+      if (!baseName) return;
+      
+      const paths = [
+        `${baseName}.png`,
+        `images/${baseName}.png`,
+        `${baseName}.jpg`,
+        `images/${baseName}.jpg`,
+        `${baseName}.webp`,
+        `images/${baseName}.webp`,
+        `${baseName}.jpeg`,
+        `images/${baseName}.jpeg`
+      ];
+      let attempt = 0;
+      
+      img.onload = () => {
+        img.style.display = 'block';
+        // Hide the placeholder sibling
+        const placeholder = img.nextElementSibling;
+        if (placeholder) {
+          placeholder.style.display = 'none';
+        }
+      };
+      
+      function tryNext() {
+        if (attempt < paths.length) {
+          img.src = paths[attempt++];
+        } else {
+          img.style.display = 'none';
+          const placeholder = img.nextElementSibling;
+          if (placeholder) {
+            placeholder.style.display = 'flex';
+          }
+        }
       }
+      
+      img.onerror = tryNext;
+      tryNext();
     });
-
-    // Translate track
-    const offset = -currentIndex * itemHeight;
-    rollerTrack.style.transform = `translateY(${offset}px)`;
-    rollerTrack.style.transition = 'transform 0.6s cubic-bezier(0.16, 1, 0.3, 1)';
-
-    currentIndex = (currentIndex + 1) % items.length;
-  };
-
-  // Run immediately and set interval
-  updateRoller();
-  setInterval(updateRoller, 2200);
+  }
+  
+  initAutoloader('.screenshot-img');
+  initAutoloader('.dashboard-img');
 });
