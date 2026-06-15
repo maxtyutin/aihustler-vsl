@@ -308,71 +308,12 @@ document.addEventListener('DOMContentLoaded', () => {
           if (submitBtn) submitBtn.disabled = true;
           if (btnText) btnText.textContent = 'Отправка...';
           if (btnSpinner) btnSpinner.style.display = 'block';
-          if (formMsg) formMsg.style.display = 'none';
+          if (formMsg) {
+              formMsg.style.display = 'none';
+              formMsg.className = 'form-message';
+              formMsg.textContent = '';
+          }
 
-          const modalTitle = document.querySelector('.modal-title');
-          const modalDesc = document.querySelector('.modal-desc');
-          if (modalTitle) modalTitle.style.display = 'none';
-          if (modalDesc) modalDesc.style.display = 'none';
-          
-          appForm.style.position = 'absolute';
-          appForm.style.opacity = '0';
-          appForm.style.pointerEvents = 'none';
-          appForm.style.height = '0';
-          appForm.style.overflow = 'hidden';
-          
-          const successState = document.getElementById('quiz-success-state');
-          if (successState) {
-              successState.style.display = 'flex';
-          }
-          
-          const telegramBtn = document.getElementById('success-telegram-btn');
-          if (telegramBtn) {
-              telegramBtn.href = TELEGRAM_LINK;
-          }
-          
-          const redirectProgress = document.querySelector('.redirect-progress-fill');
-          if (redirectProgress) {
-              redirectProgress.style.transition = 'none';
-              redirectProgress.style.width = '0%';
-              setTimeout(() => {
-                  redirectProgress.style.transition = 'width 3s linear';
-                  redirectProgress.style.width = '100%';
-              }, 50);
-          }
-          
-          let countdown = 3;
-          const countdownEl = document.getElementById('redirect-countdown');
-          if (countdownEl) {
-              countdownEl.textContent = countdown;
-          }
-          
-          if (redirectInterval) clearInterval(redirectInterval);
-          redirectInterval = setInterval(() => {
-              countdown--;
-              if (countdownEl) {
-                  countdownEl.textContent = countdown;
-              }
-              if (countdown <= 0) {
-                  clearInterval(redirectInterval);
-              }
-          }, 1000);
-          
-          let isSubmitted = false;
-          let isTimerFinished = false;
-          
-          function tryRedirect() {
-              if (isSubmitted && isTimerFinished) {
-                  window.location.href = TELEGRAM_LINK;
-              }
-          }
-          
-          if (redirectTimeout) clearTimeout(redirectTimeout);
-          redirectTimeout = setTimeout(() => {
-              isTimerFinished = true;
-              tryRedirect();
-          }, 3000);
-          
           const formData = new FormData(appForm);
           const jsonObject = {};
           formData.forEach((value, key) => {
@@ -397,20 +338,89 @@ document.addEventListener('DOMContentLoaded', () => {
           })
           .then(data => {
               if (data.success) {
-                  isSubmitted = true;
-                  tryRedirect();
+                  // SUCCESS STATE TRANSITION
+                  const modalTitle = document.querySelector('.modal-title');
+                  const modalDesc = document.querySelector('.modal-desc');
+                  if (modalTitle) modalTitle.style.display = 'none';
+                  if (modalDesc) modalDesc.style.display = 'none';
+                  
+                  appForm.style.position = 'absolute';
+                  appForm.style.opacity = '0';
+                  appForm.style.pointerEvents = 'none';
+                  appForm.style.height = '0';
+                  appForm.style.overflow = 'hidden';
+                  
+                  const successState = document.getElementById('quiz-success-state');
+                  if (successState) {
+                      successState.style.display = 'flex';
+                  }
+                  
+                  const telegramBtn = document.getElementById('success-telegram-btn');
+                  if (telegramBtn) {
+                      telegramBtn.href = TELEGRAM_LINK;
+                  }
+                  
+                  const redirectProgress = document.querySelector('.redirect-progress-fill');
+                  if (redirectProgress) {
+                      redirectProgress.style.transition = 'none';
+                      redirectProgress.style.width = '0%';
+                      setTimeout(() => {
+                          redirectProgress.style.transition = 'width 3s linear';
+                          redirectProgress.style.width = '100%';
+                      }, 50);
+                  }
+                  
+                  let countdown = 3;
+                  const countdownEl = document.getElementById('redirect-countdown');
+                  if (countdownEl) {
+                      countdownEl.textContent = countdown;
+                  }
+                  
+                  if (redirectInterval) clearInterval(redirectInterval);
+                  redirectInterval = setInterval(() => {
+                      countdown--;
+                      if (countdownEl) {
+                          countdownEl.textContent = countdown;
+                      }
+                      if (countdown <= 0) {
+                          clearInterval(redirectInterval);
+                      }
+                  }, 1000);
+                  
+                  if (redirectTimeout) clearTimeout(redirectTimeout);
+                  redirectTimeout = setTimeout(() => {
+                      window.location.href = TELEGRAM_LINK;
+                  }, 3000);
               } else {
                   console.error('Submission failed:', data.message);
-                  alert('Ошибка отправки формы Web3Forms: ' + (data.message || 'Неизвестная ошибка'));
-                  isSubmitted = true;
-                  tryRedirect();
+                  
+                  // Reset submit button state
+                  if (submitBtn) submitBtn.disabled = false;
+                  if (btnText) btnText.textContent = 'Отправить заявку и забрать бонусы';
+                  if (btnSpinner) btnSpinner.style.display = 'none';
+                  
+                  if (formMsg) {
+                      formMsg.className = 'form-message error';
+                      formMsg.textContent = 'Ошибка отправки: ' + (data.message || 'попробуйте позже');
+                      formMsg.style.display = 'block';
+                  }
+                  alert('Ошибка Web3Forms: ' + (data.message || 'Неизвестная ошибка'));
               }
           })
           .catch(error => {
               console.error('Error submitting form:', error);
-              alert('Сетевая ошибка при отправке формы: ' + error.message);
-              isSubmitted = true;
-              tryRedirect();
+              
+              // Reset submit button state
+              if (submitBtn) submitBtn.disabled = false;
+              if (btnText) btnText.textContent = 'Отправить заявку и забрать бонусы';
+              if (btnSpinner) btnSpinner.style.display = 'none';
+              
+              if (formMsg) {
+                  formMsg.className = 'form-message error';
+                  formMsg.textContent = 'Ошибка сети: ' + error.message;
+                  formMsg.style.display = 'block';
+              }
+              alert('Ошибка соединения: ' + error.message);
           });
       });
   }
