@@ -387,19 +387,28 @@ document.addEventListener('DOMContentLoaded', () => {
               },
               body: JSON.stringify(jsonObject)
           })
-          .then(response => response.json())
+          .then(response => {
+              if (!response.ok) {
+                  return response.text().then(text => {
+                      throw new Error('HTTP ' + response.status + ': ' + text);
+                  });
+              }
+              return response.json();
+          })
           .then(data => {
               if (data.success) {
                   isSubmitted = true;
                   tryRedirect();
               } else {
                   console.error('Submission failed:', data.message);
+                  alert('Ошибка отправки формы Web3Forms: ' + (data.message || 'Неизвестная ошибка'));
                   isSubmitted = true;
                   tryRedirect();
               }
           })
           .catch(error => {
               console.error('Error submitting form:', error);
+              alert('Сетевая ошибка при отправке формы: ' + error.message);
               isSubmitted = true;
               tryRedirect();
           });
