@@ -491,4 +491,48 @@ document.addEventListener('DOMContentLoaded', () => {
   
   initAutoloader('.screenshot-img');
   initAutoloader('.dashboard-img');
+
+  // 4. PERSISTENT 45-MINUTE COUNTDOWN TIMER
+  const TIMER_DURATION_MINUTES = 45;
+  const timerElements = document.querySelectorAll('.timer-countdown');
+
+  if (timerElements.length > 0) {
+      let targetTime = localStorage.getItem('ai_hustler_timer_target');
+      const now = new Date().getTime();
+
+      if (!targetTime || parseInt(targetTime) < now) {
+          // If no target time is set, or if the target time is in the past, set a new one
+          targetTime = now + (TIMER_DURATION_MINUTES * 60 * 1000);
+          localStorage.setItem('ai_hustler_timer_target', targetTime);
+      } else {
+          targetTime = parseInt(targetTime);
+      }
+
+      function updateCountdown() {
+          const currentTime = new Date().getTime();
+          let timeLeft = targetTime - currentTime;
+
+          if (timeLeft <= 0) {
+              // Reset the timer back to 45 minutes to keep it running
+              timeLeft = TIMER_DURATION_MINUTES * 60 * 1000;
+              targetTime = new Date().getTime() + timeLeft;
+              localStorage.setItem('ai_hustler_timer_target', targetTime);
+          }
+
+          const totalSeconds = Math.floor(timeLeft / 1000);
+          const minutes = Math.floor(totalSeconds / 60);
+          const seconds = totalSeconds % 60;
+
+          const formattedMinutes = String(minutes).padStart(2, '0');
+          const formattedSeconds = String(seconds).padStart(2, '0');
+          const timeString = `${formattedMinutes}:${formattedSeconds}`;
+
+          timerElements.forEach(el => {
+              el.textContent = timeString;
+          });
+      }
+
+      updateCountdown();
+      setInterval(updateCountdown, 1000);
+  }
 });
