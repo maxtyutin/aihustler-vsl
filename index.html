@@ -11,6 +11,7 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800&family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="style.css?v=1.0.2">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/css/intlTelInput.css">
   
   <!-- Favicon -->
   <link rel="icon" type="image/svg+xml" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23FF631F'><path d='M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm1 15h-2v-6h2v6zm0-8h-2V7h2v2z'/></svg>">
@@ -32,7 +33,7 @@
   <header class="hero">
     <div class="wrap">
       <span class="tag-eyebrow">AI HUSTLER · БЕСПЛАТНЫЙ ДОСТУП</span>
-      <h1 class="display">Раньше я продавал эту систему за 150 000 ₽. Сейчас вы можете забрать её бесплатно!</h1>
+      <h1 class="display">Раньше я продавал эту систему заработка за 150 000 ₽. Сейчас вы можете забрать её бесплатно!</h1>
       <p class="sub body-l">Посмотрите видео ниже, чтобы получить пошаговую систему заработка от 5000$ / мес на AI маркетинге</p>
       
       <div class="chips">
@@ -73,7 +74,7 @@
           <span class="video-duration">10:42</span>
           <span class="video-hint">Нажмите, чтобы включить презентацию</span>
         </div>
-        <iframe id="videoIframe" src="https://www.youtube.com/embed/dQw4w9WgXcQ?enablejsapi=1" title="AI Hustler Presentation" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+        <video id="heroVideo" src="hero-video.mp4" controls preload="metadata"></video>
       </div>
 
       <button class="btn-primary open-modal-btn" type="button">Получить систему бесплатно</button>
@@ -93,6 +94,13 @@
           <b class="tp-name">Оценка 4.9/5</b>
           <span class="body-s muted tp-meta">Более 100 учеников</span>
         </span>
+      </div>
+      <!-- Дублированные бонусы -->
+      <div class="simple-bonus-box" style="margin: 1.5rem auto 0 auto; padding: 0.8rem 1rem; border-color: rgba(255, 99, 31, 0.4); background: rgba(255, 99, 31, 0.05); max-width: 480px; width: 100%;">
+        <div class="bonus-emoji" style="font-size: 1.5rem; margin-right: 12px;">🎁</div>
+        <div class="bonus-text-content" style="font-size: 0.85rem;">
+          Бонусы: Секретный набор ИИ инструментов и библиотека шаблонов сайтов
+        </div>
       </div>
     </div>
   </header>
@@ -184,70 +192,8 @@
           <button class="btn-primary open-modal-btn" type="button">Узнать подробнее</button>
         </div>
         <div class="split-img">
-          <!-- Placeholder container for the user's image (will be replaced later) -->
-          <div class="user-image-container">
-            <img class="dashboard-img" data-base="dashboard" alt="Интеграции" style="display:none; width:100%; height:100%; object-fit:cover; border-radius:12px;">
-            <div class="user-image-placeholder">
-              <svg viewBox="0 0 500 320" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%; max-width:500px; display:block;">
-                <!-- Sidebar -->
-                <rect x="0" y="0" width="80" height="320" fill="#0c0e16" />
-                <rect x="15" y="20" width="50" height="10" rx="3" fill="var(--cta-primary)" opacity="0.8" />
-                <rect x="15" y="60" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.3" />
-                <rect x="15" y="85" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.3" />
-                <rect x="15" y="110" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.3" />
-                <rect x="15" y="135" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.3" />
-                
-                <!-- Header -->
-                <rect x="80" y="0" width="420" height="40" fill="#0e111a" />
-                <rect x="100" y="15" width="120" height="10" rx="3" fill="var(--text-primary)" opacity="0.2" />
-                <circle cx="460" cy="20" r="10" fill="var(--text-muted)" opacity="0.2" />
-                
-                <!-- Main Stats Grid -->
-                <rect x="100" y="60" width="110" height="50" rx="6" fill="#181b28" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-                <rect x="115" y="70" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.4" />
-                <rect x="115" y="85" width="70" height="14" rx="3" fill="var(--text-primary)" opacity="0.8" />
-                
-                <rect x="225" y="60" width="110" height="50" rx="6" fill="#181b28" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-                <rect x="240" y="70" width="50" height="6" rx="2" fill="var(--text-muted)" opacity="0.4" />
-                <rect x="240" y="85" width="60" height="14" rx="3" fill="#10b981" opacity="0.8" />
-                
-                <rect x="350" y="60" width="130" height="50" rx="6" fill="#181b28" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-                <rect x="365" y="70" width="70" height="6" rx="2" fill="var(--text-muted)" opacity="0.4" />
-                <rect x="365" y="85" width="80" height="14" rx="3" fill="var(--cta-primary)" opacity="0.8" />
-                
-                <!-- Main Chart Area -->
-                <rect x="100" y="125" width="380" height="110" rx="8" fill="#181b28" stroke="rgba(255,255,255,0.04)" stroke-width="1" />
-                <path d="M120 210 Q 180 180, 240 195 T 360 150 T 460 145" stroke="var(--cta-primary)" stroke-width="3" fill="none" />
-                <path d="M120 210 Q 180 180, 240 195 T 360 150 T 460 145 L 460 220 L 120 220 Z" fill="url(#mainChartGrad)" opacity="0.1" />
-                
-                <!-- Integrations Section -->
-                <rect x="100" y="250" width="380" height="55" rx="8" fill="#0f111a" stroke="rgba(255,255,255,0.03)" stroke-width="1" />
-                <text x="115" y="282" fill="var(--text-primary)" font-size="11" font-weight="600" opacity="0.6">ИНТЕГРАЦИИ:</text>
-                
-                <!-- Telegram node -->
-                <rect x="200" y="258" width="80" height="38" rx="6" fill="#1e2230" />
-                <text x="215" y="281" fill="#38a5e0" font-size="11" font-weight="700">Telegram</text>
-                
-                <!-- CRM node -->
-                <rect x="290" y="258" width="80" height="38" rx="6" fill="#1e2230" />
-                <text x="312" y="281" fill="#f37021" font-size="11" font-weight="700">amoCRM</text>
-                
-                <!-- WhatsApp node -->
-                <rect x="380" y="258" width="90" height="38" rx="6" fill="#1e2230" />
-                <text x="398" y="281" fill="#25d366" font-size="11" font-weight="700">WhatsApp</text>
-                
-                <defs>
-                  <linearGradient id="mainChartGrad" x1="0" y1="125" x2="0" y2="235">
-                    <stop stop-color="var(--cta-primary)" />
-                    <stop offset="1" stop-color="transparent" />
-                  </linearGradient>
-                </defs>
-              </svg>
-              <div class="user-placeholder-overlay">
-                <span class="user-overlay-tag">Интеграции и аналитика</span>
-                <span class="user-overlay-sub">Изображение будет заменено при загрузке dashboard.png</span>
-              </div>
-            </div>
+          <div class="user-image-container" style="aspect-ratio: 1/1; max-width: 420px; margin: 0 auto; border: 1px solid var(--border);">
+            <img src="founder-photo.jpeg" alt="Основатель AI HUSTLER" style="width: 100%; height: 100%; object-fit: cover; display: block;">
           </div>
         </div>
       </div>
@@ -399,23 +345,7 @@
       <div class="g4 tleft">
         <div class="card feat-card animate-on-hover">
           <div class="feat-img-container">
-            <svg class="feat-img-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="400" height="200" fill="url(#grad1)" />
-              <circle cx="200" cy="100" r="60" stroke="rgba(255, 99, 31, 0.3)" stroke-width="1.5" />
-              <circle cx="200" cy="100" r="40" stroke="rgba(255, 99, 31, 0.5)" stroke-width="1.5" />
-              <circle cx="200" cy="100" r="20" stroke="var(--cta-primary)" stroke-width="2" />
-              <line x1="200" y1="30" x2="200" y2="170" stroke="rgba(255, 255, 255, 0.1)" />
-              <line x1="130" y1="100" x2="270" y2="100" stroke="rgba(255, 255, 255, 0.1)" />
-              <circle cx="170" cy="80" r="5" fill="#22c55e" />
-              <circle cx="240" cy="120" r="4" fill="#22c55e" />
-              <circle cx="210" cy="60" r="6" fill="#f59e0b" />
-              <defs>
-                <linearGradient id="grad1" x1="0" y1="0" x2="400" y2="200">
-                  <stop stop-color="#11131c" />
-                  <stop offset="1" stop-color="#171923" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img class="feat-img" src="step-find.webp" alt="Поиск клиентов">
           </div>
           <div class="feat-body">
             <h3 class="h3-22 mb8">Поиск клиентов</h3>
@@ -425,23 +355,7 @@
 
         <div class="card feat-card animate-on-hover">
           <div class="feat-img-container">
-            <svg class="feat-img-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="400" height="200" fill="url(#grad2)" />
-              <rect x="80" y="60" width="80" height="40" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
-              <text x="120" y="84" fill="var(--text-muted)" font-size="11" font-family="var(--font-body)" text-anchor="middle">Яндекс</text>
-              <rect x="240" y="60" width="80" height="40" rx="8" fill="rgba(255,255,255,0.05)" stroke="rgba(255,255,255,0.1)" />
-              <text x="280" y="84" fill="var(--text-muted)" font-size="11" font-family="var(--font-body)" text-anchor="middle">ВКонтакте</text>
-              <rect x="150" y="130" width="100" height="40" rx="8" fill="rgba(255, 99, 31, 0.1)" stroke="var(--border-active)" />
-              <text x="200" y="154" fill="var(--cta-primary)" font-size="12" font-family="var(--font-body)" font-weight="700" text-anchor="middle">ИИ-Креатор</text>
-              <path d="M120 100 L170 130" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3" />
-              <path d="M280 100 L230 130" stroke="rgba(255,255,255,0.2)" stroke-dasharray="3 3" />
-              <defs>
-                <linearGradient id="grad2" x1="0" y1="0" x2="400" y2="200">
-                  <stop stop-color="#11131c" />
-                  <stop offset="1" stop-color="#171923" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img class="feat-img" src="step-build.webp" alt="Интеграция ИИ">
           </div>
           <div class="feat-body">
             <h3 class="h3-22 mb8">Интеграция ИИ</h3>
@@ -451,21 +365,7 @@
 
         <div class="card feat-card animate-on-hover">
           <div class="feat-img-container">
-            <svg class="feat-img-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="400" height="200" fill="url(#grad3)" />
-              <circle cx="200" cy="100" r="45" fill="rgba(34, 197, 94, 0.1)" stroke="#22c55e" stroke-width="2" />
-              <path d="M185 100 L195 110 L215 90" stroke="#22c55e" stroke-width="4" stroke-linecap="round" stroke-linejoin="round" />
-              <rect x="70" y="140" width="15" height="20" rx="2" fill="rgba(255,255,255,0.1)" />
-              <rect x="100" y="120" width="15" height="40" rx="2" fill="rgba(255,255,255,0.15)" />
-              <rect x="280" y="100" width="15" height="60" rx="2" fill="var(--cta-primary)" />
-              <rect x="310" y="80" width="15" height="80" rx="2" fill="#22c55e" />
-              <defs>
-                <linearGradient id="grad3" x1="0" y1="0" x2="400" y2="200">
-                  <stop stop-color="#11131c" />
-                  <stop offset="1" stop-color="#171923" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img class="feat-img" src="step-close.webp" alt="Закрытие сделки">
           </div>
           <div class="feat-body">
             <h3 class="h3-22 mb8">Закрытие сделки</h3>
@@ -475,23 +375,7 @@
 
         <div class="card feat-card animate-on-hover">
           <div class="feat-img-container">
-            <svg class="feat-img-svg" viewBox="0 0 400 200" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="400" height="200" fill="url(#grad4)" />
-              <path d="M50 150 L120 120 L190 130 L260 70 L350 40" stroke="#10b981" stroke-width="3" stroke-linecap="round" />
-              <path d="M50 150 L120 120 L190 130 L260 70 L350 40 L350 180 L50 180 Z" fill="url(#payoutChartGrad2)" opacity="0.15" />
-              <circle cx="350" cy="40" r="5" fill="#10b981" />
-              <circle cx="260" cy="70" r="4" fill="var(--cta-primary)" />
-              <defs>
-                <linearGradient id="grad4" x1="0" y1="0" x2="400" y2="200">
-                  <stop stop-color="#11131c" />
-                  <stop offset="1" stop-color="#171923" />
-                </linearGradient>
-                <linearGradient id="payoutChartGrad2" x1="0" y1="40" x2="0" y2="180">
-                  <stop stop-color="#10b981" />
-                  <stop offset="1" stop-color="transparent" />
-                </linearGradient>
-              </defs>
-            </svg>
+            <img class="feat-img" src="step-profit.webp" alt="Продвижение">
           </div>
           <div class="feat-body">
             <h3 class="h3-22 mb8">Продвижение</h3>
@@ -515,13 +399,16 @@
       <div class="g3 program-grid">
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad1)" />
-              <circle cx="60" cy="40" r="22" stroke="var(--cta-primary)" stroke-width="1.5" stroke-dasharray="4 4" />
-              <circle cx="60" cy="40" r="16" fill="rgba(255, 99, 31, 0.1)" />
-              <path d="M54 40 L58 44 L66 36" stroke="var(--cta-primary)" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" />
-              <path d="M60 10 L60 18" stroke="var(--cta-primary)" stroke-width="2" stroke-linecap="round" />
-            </svg>
+            <div class="module-banner banner-m1">
+              <div class="banner-decor"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 21h6M9 17h6M12 2v2M5.22 5.22l1.42 1.42M18.78 5.22l-1.42 1.42M12 6a6 6 0 0 0-6 6c0 1.66.7 3.13 1.8 4.17A2 2 0 0 1 8.5 19h7a2 2 0 0 1 .7-2.83 6 6 0 0 0 1.8-4.17 6 6 0 0 0-6-6z"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">System</span>
+                <span class="title-serif">Foundations</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 1</div>
@@ -532,12 +419,16 @@
         
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad2)" />
-              <path d="M35 55 L50 40 L65 48 L85 30" stroke="var(--accent-lime-border)" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" />
-              <circle cx="85" cy="30" r="4" fill="var(--accent-lime-border)" />
-              <path d="M45 25 L35 32 C 30 35, 30 45, 35 48 L45 55" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" stroke-linecap="round" />
-            </svg>
+            <div class="module-banner banner-m2">
+              <div class="banner-decor-radial"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="4" y="4" width="16" height="16" rx="2" ry="2"/><rect x="9" y="9" width="6" height="6"/><line x1="9" y1="1" x2="9" y2="4"/><line x1="15" y1="1" x2="15" y2="4"/><line x1="9" y1="20" x2="9" y2="23"/><line x1="15" y1="20" x2="15" y2="23"/><line x1="20" y1="9" x2="23" y2="9"/><line x1="20" y1="15" x2="23" y2="15"/><line x1="1" y1="9" x2="4" y2="9"/><line x1="1" y1="15" x2="4" y2="15"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">AI Automation</span>
+                <span class="title-serif">Mastery</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 2</div>
@@ -548,18 +439,16 @@
         
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad3)" />
-              <circle cx="60" cy="40" r="8" fill="rgba(168, 85, 247, 0.2)" stroke="var(--accent-purple)" stroke-width="1.5" />
-              <circle cx="35" cy="30" r="5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <circle cx="85" cy="30" r="5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <circle cx="45" cy="55" r="5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <circle cx="75" cy="55" r="5" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <line x1="52" y1="36" x2="39" y2="32" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-              <line x1="68" y1="36" x2="81" y2="32" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-              <line x1="55" y1="46" x2="48" y2="51" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-              <line x1="65" y1="46" x2="72" y2="51" stroke="rgba(255,255,255,0.15)" stroke-width="1.5" />
-            </svg>
+            <div class="module-banner banner-m3">
+              <div class="banner-decor"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"/><circle cx="12" cy="12" r="6"/><circle cx="12" cy="12" r="2"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">Traffic & Ads</span>
+                <span class="title-serif">Mastery</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 3</div>
@@ -570,12 +459,16 @@
         
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad1)" />
-              <path d="M40 30 C40 25, 80 25, 80 30 L70 55 C70 60, 50 60, 50 55 Z" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <line x1="60" y1="58" x2="60" y2="70" stroke="var(--cta-primary)" stroke-width="2" stroke-linecap="round" />
-              <circle cx="60" cy="35" r="6" fill="rgba(255, 99, 31, 0.2)" stroke="var(--cta-primary)" stroke-width="1.5" />
-            </svg>
+            <div class="module-banner banner-m4">
+              <div class="banner-decor-radial"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="22" y1="2" x2="11" y2="13"/><polygon points="22 2 15 22 11 13 2 9 22 2"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">Client</span>
+                <span class="title-serif">Acquisition</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 4</div>
@@ -586,17 +479,16 @@
         
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad3)" />
-              <rect x="45" y="30" width="30" height="25" rx="6" stroke="var(--accent-purple)" stroke-width="1.5" fill="rgba(168, 85, 247, 0.1)" />
-              <line x1="50" y1="55" x2="45" y2="62" stroke="var(--accent-purple)" stroke-width="1.5" stroke-linecap="round" />
-              <line x1="70" y1="55" x2="75" y2="62" stroke="var(--accent-purple)" stroke-width="1.5" stroke-linecap="round" />
-              <circle cx="54" cy="42" r="2" fill="#fff" />
-              <circle cx="66" cy="42" r="2" fill="#fff" />
-              <path d="M58 48 Q60 50 62 48" stroke="#fff" stroke-width="1.2" stroke-linecap="round" fill="none" />
-              <line x1="60" y1="20" x2="60" y2="30" stroke="var(--accent-purple)" stroke-width="1.5" />
-              <circle cx="60" cy="18" r="2" fill="var(--accent-purple)" />
-            </svg>
+            <div class="module-banner banner-m5">
+              <div class="banner-decor"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="3"/><path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 1 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 1 1-2.83-2.83l.06-.06a1.65 1.65 0 0 0 .33-1.82 1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 1 1 2.83-2.83l.06.06a1.65 1.65 0 0 0 1.82.33H9a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 1 1 2.83 2.83l-.06.06a1.65 1.65 0 0 0-.33 1.82V9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">AI Agents</span>
+                <span class="title-serif">Mastery</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 5</div>
@@ -607,15 +499,16 @@
         
         <div class="program-card animate-on-hover">
           <div class="feat-img-container">
-            <svg viewBox="0 0 120 80" class="prog-svg" fill="none" xmlns="http://www.w3.org/2000/svg" style="width:100%; height:100%;">
-              <rect width="120" height="80" fill="url(#grad2)" />
-              <rect x="40" y="25" width="40" height="35" rx="4" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <line x1="40" y1="35" x2="80" y2="35" stroke="rgba(255,255,255,0.2)" stroke-width="1.5" />
-              <circle cx="50" cy="45" r="3" fill="var(--cta-primary)" />
-              <circle cx="60" cy="45" r="3" fill="var(--cta-primary)" />
-              <circle cx="70" cy="45" r="3" fill="var(--cta-primary)" />
-              <path d="M48 20 L48 24 M72 20 L72 24" stroke="rgba(255,255,255,0.4)" stroke-width="2" stroke-linecap="round" />
-            </svg>
+            <div class="module-banner banner-m6">
+              <div class="banner-decor"></div>
+              <div class="banner-badge">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/></svg>
+              </div>
+              <div class="banner-title">
+                <span class="title-bold">Masterclass</span>
+                <span class="title-serif">Intensive</span>
+              </div>
+            </div>
           </div>
           <div class="feat-body">
             <div class="prog-badge">Модуль 6</div>
@@ -633,7 +526,7 @@
   <section class="sec band">
     <div class="wrap">
       <div class="eyebrow center mb16">Результаты участников</div>
-      <h2 class="h2-48 center mb48">Результаты нашей команды</h2>
+      <h2 class="h2-48 center mb48">Результаты учеников</h2>
       
 
       <div class="g3 screenshots-grid">
@@ -965,48 +858,169 @@
     </div>
   </section>
 
-  <!-- Footer -->
   <footer class="foot">
     <div class="wrap">
       <span class="logo-text">AI Hustler &copy; 2026</span>
       <div class="flinks">
-        <a href="#">Политика конфиденциальности</a>
-        <a href="#">Пользовательское соглашение</a>
-        <a href="#">Отказ от ответственности</a>
+        <a href="privacy.html">Политика конфиденциальности</a>
+        <a href="consent.html">Согласие на обработку персональных данных</a>
       </div>
-      <p class="disc">Вся информация на данном сайте предназначена исключительно для ознакомительных целей. Мы не гарантируем конкретных финансовых результатов. Результаты каждого ученика зависят от приложенных усилий, опыта и дисциплины.</p>
     </div>
   </footer>
 
-  <!-- Lead Modal Overlay -->
-  <div class="fbm-overlay" id="leadModal">
-    <div class="fbm">
-      <button class="fbm-close" id="closeModalBtn" type="button">&times;</button>
-      <div class="fbm-logo-wrap">
-        <span class="logo-text font-alt">Регистрация в системе</span>
-      </div>
-      <span class="eyebrow mb8">Получите бесплатную систему</span>
-      <h3 class="h3-22 mb20">Введите ваши данные, чтобы открыть доступ к обучению:</h3>
+  <!-- Application Modal -->
+  <div class="modal-overlay" id="app-modal">
+    <div class="modal-box" onclick="event.stopPropagation()">
+      <button class="modal-close" onclick="closeModal()">
+        <svg viewBox="0 0 24 24" width="24" height="24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>
+      </button>
+      <div class="logo" style="margin-bottom: 0.75rem; text-align: left; font-size: 1.3rem;">AI Хастлер</div>
+      <h3 class="modal-title" style="text-align: left; font-size: 1.25rem; line-height: 1.4;">Пошаговая система заработка от 5000$ / мес на AI маркетинге</h3>
+      <p class="modal-desc" style="text-align: left;">Ответь на 5 коротких вопросов и получи доступ к системе и бонусам абсолютно бесплатно.</p>
       
-      <form class="fbm-form" id="leadForm">
-        <input class="fbm-input" type="text" placeholder="Ваше имя" required id="leadName">
-        <input class="fbm-input" type="email" placeholder="Ваш Email" required id="leadEmail">
+      <form id="app-form" action="https://api.web3forms.com/submit" method="POST" autocomplete="on" accept-charset="UTF-8">
+        <!-- Web3Forms Configuration -->
+        <input type="hidden" name="access_key" id="web3forms-access-key" value="41bc8576-ffd3-4a5d-bf2f-456a11df1864">
+        <input type="hidden" name="subject" value="Новая заявка на бесплатный мастер-класс!">
+        <input type="hidden" name="from_name" value="AI Хастлер">
+        <input type="hidden" name="redirect" id="quiz-redirect-field" value="">
+        <input type="checkbox" name="botcheck" class="hidden" style="display: none;">
         
-        <div class="fbm-phone">
-          <select class="fbm-country" id="leadCountry">
-            <option value="RU" selected>🇷🇺 +7</option>
-            <option value="BY">🇧🇾 +375</option>
-            <option value="KZ">🇰🇿 +7</option>
-          </select>
-          <input class="fbm-input fbm-phone-input" type="tel" placeholder="Номер телефона" required id="leadPhone">
+        <!-- persistent bonuses block under the description -->
+        <div class="simple-bonus-box" style="margin: 0 auto 1.5rem auto; padding: 0.8rem 1rem; border-color: rgba(255, 99, 31, 0.4); background: rgba(255, 99, 31, 0.05); max-width: 100%;">
+          <div class="bonus-emoji" style="font-size: 1.5rem; margin-right: 12px;">🎁</div>
+          <div class="bonus-text-content" style="font-size: 0.85rem;">
+            Бонусы: Секретный набор ИИ инструментов и библиотека шаблонов сайтов
+          </div>
+        </div>
+
+        <!-- Quiz Progress Bar -->
+        <div class="quiz-progress-wrapper">
+          <div class="quiz-progress-text">
+            <span id="quiz-step-indicator">Шаг 1 из 5: Уровень AI</span>
+            <span id="quiz-percent-indicator">20%</span>
+          </div>
+          <div class="quiz-progress-bar">
+            <div class="quiz-progress-fill" id="quiz-progress-fill" style="width: 20%;"></div>
+          </div>
+        </div>
+
+        <!-- Step 1: Уровень владения AI -->
+        <div class="quiz-step active" data-step="1">
+          <div class="quiz-question-title">Какой твой уровень владения AI инструментами?</div>
+          <div class="quiz-options-list">
+            <button type="button" class="quiz-option" data-value="Новичок">Новичок</button>
+            <button type="button" class="quiz-option" data-value="Пробовал ранее">Пробовал ранее</button>
+            <button type="button" class="quiz-option" data-value="Хорошо понимаю как создавать контент">Хорошо понимаю как создавать контент</button>
+            <button type="button" class="quiz-option" data-value="Уже зарабатываю с помощью AI">Уже зарабатываю с помощью AI</button>
+          </div>
+          <input type="hidden" name="Уровень владения AI" id="quiz-q1-value" required>
+        </div>
+
+        <!-- Step 2: Почему хочешь начать зарабатывать -->
+        <div class="quiz-step" data-step="2">
+          <div class="quiz-question-title">Почему ты хочешь начать зарабатывать с помощью AI?</div>
+          <div class="form-group">
+            <textarea id="quiz-q2-textarea" name="Почему хочет начать зарабатывать" class="form-input form-textarea" placeholder="Напишите своими словами..." required></textarea>
+          </div>
+        </div>
+
+        <!-- Step 3: Что бы ты изменил в жизни -->
+        <div class="quiz-step" data-step="3">
+          <div class="quiz-question-title">Что бы ты изменил в своей жизни, если бы начал зарабатывать 5к+ с помощью AI?</div>
+          <div class="form-group">
+            <textarea id="quiz-q3-textarea" name="Что изменил бы в жизни (от 5к+)" class="form-input form-textarea" placeholder="Напишите своими словами..." required></textarea>
+          </div>
+        </div>
+
+        <!-- Step 4: Когда готов начать -->
+        <div class="quiz-step" data-step="4">
+          <div class="quiz-question-title">Когда ты готов начать?</div>
+          <div class="quiz-options-list">
+            <button type="button" class="quiz-option" data-value="Сейчас">Сейчас</button>
+            <button type="button" class="quiz-option" data-value="В течение 30 дней">В течение 30 дней</button>
+            <button type="button" class="quiz-option" data-value="В этом году">В этом году</button>
+          </div>
+          <input type="hidden" name="Когда готов начать" id="quiz-q4-value" required>
+        </div>
+
+        <!-- Step 5: Заполнение контактных данных -->
+        <div class="quiz-step" data-step="5">
+          <div class="quiz-question-title" style="margin-bottom: 1.5rem;">Заполнение контактных данных</div>
+          
+          <div class="form-group">
+            <label class="form-label" for="name">Ваше имя</label>
+            <input type="text" id="name" name="Имя" class="form-input" placeholder="Иван Иванов" autocomplete="name" required>
+          </div>
+          <div class="form-group" style="position: relative; z-index: 9999;">
+            <label class="form-label" for="phone">Номер телефона (WhatsApp/Telegram)</label>
+            <input type="tel" id="phone" name="Телефон" class="form-input" placeholder="+7 (999) 000-00-00" autocomplete="tel" value="+7" required>
+          </div>
+          <div class="form-group">
+            <label class="form-label" for="email">Email</label>
+            <input type="email" id="email" name="email" class="form-input" placeholder="example@gmail.com" autocomplete="email" required>
+          </div>
+        </div>
+
+        <div id="form-msg" class="form-message"></div>
+
+        <!-- Navigation buttons footer (Steps 1-4) -->
+        <div class="quiz-nav-row" id="quiz-nav-controls">
+          <button type="button" class="quiz-nav-btn prev-btn" id="quiz-prev-btn" style="display: none;">Назад</button>
+          <button type="button" class="quiz-nav-btn next-btn" id="quiz-next-btn">Далее</button>
+        </div>
+
+        <!-- Submit and Back buttons container (Step 5) -->
+        <div id="quiz-submit-controls" style="display: none; flex-direction: column; gap: 0.75rem; margin-top: 1rem;">
+          <button type="submit" class="form-submit-btn" id="submit-btn" style="margin-top: 0; width: 100%;">
+            <span>Отправить заявку и забрать бонусы</span>
+            <div class="spinner" id="btn-spinner"></div>
+          </button>
+          <button type="button" class="quiz-nav-btn" id="quiz-step5-prev-btn" style="width: 100%;">Назад</button>
+          <div style="font-size: 0.7rem; color: var(--text-secondary); text-align: center; line-height: 1.4; margin-top: 0.4rem; max-width: 100%; opacity: 0.7;">
+            Нажимая на кнопку "Отправить заявку и забрать бонусы", вы соглашаетесь на обработку <a href="consent.html" target="_blank" style="color: var(--accent-blue); text-decoration: underline; transition: color 0.2s ease;">персональных данных</a>.
+          </div>
+        </div>
+      </form>
+
+      <!-- Success / Thank You State -->
+      <div id="quiz-success-state">
+        <div class="success-icon-wrapper">
+          <div class="success-icon-glow"></div>
+          <svg class="success-checkmark" viewBox="0 0 52 52">
+            <circle class="checkmark-circle" cx="26" cy="26" r="25" fill="none"/>
+            <path class="checkmark-check" fill="none" d="M14.1 27.2l7.1 7.2 16.7-16.8"/>
+          </svg>
+        </div>
+        <h3 class="success-title">Доступ открыт!</h3>
+        <p class="success-desc">Вы успешно зарегистрировались на бесплатный мастер-класс. Ваши бонусы уже готовы!</p>
+        
+        <div class="redirect-box">
+          <div class="redirect-status">
+            <span>Перенаправление в Telegram через <span id="redirect-countdown">3</span> сек</span>
+            <div class="redirect-loader-dots">
+              <span></span>
+              <span></span>
+              <span></span>
+            </div>
+          </div>
+          <div class="redirect-progress-bar">
+            <div class="redirect-progress-fill"></div>
+          </div>
         </div>
         
-        <button class="btn-primary" type="submit" id="submitBtn">Зарегистрироваться бесплатно</button>
-        <p class="fbm-consent">Регистрируясь, вы соглашаетесь с обработкой персональных данных и условиями сервиса.</p>
-      </form>
+        <a href="#" id="success-telegram-btn" target="_blank" class="telegram-redirect-btn">
+          <svg viewBox="0 0 24 24" width="20" height="20" fill="currentColor" style="margin-right: 4px;">
+            <path d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm4.64 6.8c-.15 1.58-.8 5.42-1.13 7.19-.14.75-.42 1-.68 1.03-.58.05-1.02-.38-1.58-.75-.88-.58-1.38-.94-2.23-1.5-.99-.65-.35-1.01.22-1.59.15-.15 2.71-2.48 2.76-2.69.01-.03.01-.14-.07-.2-.08-.06-.19-.04-.27-.02-.12.02-1.96 1.24-5.54 3.65-.52.36-.99.53-1.41.52-.46-.01-1.35-.26-2.01-.48-.81-.27-1.46-.42-1.4-.88.03-.24.37-.49 1.03-.75 4.04-1.76 6.74-2.92 8.09-3.48 3.85-1.6 4.64-1.88 5.17-1.89.11 0 .37.03.54.17.14.12.18.28.2.45-.02.07-.02.13-.03.2z"/>
+          </svg>
+          <span>Перейти в Telegram</span>
+        </a>
+      </div>
     </div>
   </div>
 
+  <!-- Подключаем скрипт выбора страны для телефона -->
+  <script src="https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/intlTelInput.min.js"></script>
   <script src="app.js?v=1.0.2"></script>
 </body>
 </html>

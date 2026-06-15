@@ -1,80 +1,429 @@
 document.addEventListener('DOMContentLoaded', () => {
-  // 1. Modal Dialog Logic
-  const leadModal = document.getElementById('leadModal');
-  const openModalBtns = document.querySelectorAll('.open-modal-btn');
-  const closeModalBtn = document.getElementById('closeModalBtn');
-  const leadForm = document.getElementById('leadForm');
+  // 1. Modal & Quiz Logic
+  // НАСТРОЙКА: Ссылка для перенаправления в Telegram после заполнения формы
+  const TELEGRAM_LINK = "https://t.me/ai_hustlers_bot?start=welcome";
 
-  const openModal = () => {
-    leadModal.classList.add('open');
-    document.body.style.overflow = 'hidden'; // Disable scroll under modal
+  // НАСТРОЙКА: Ключ доступа Web3Forms для отправки заявок на почту
+  const WEB3FORMS_ACCESS_KEY = "41bc8576-ffd3-4a5d-bf2f-456a11df1864";
+
+  // Инициализация библиотеки выбора кода страны (intl-tel-input)
+  const phoneInput = document.querySelector("#phone");
+  let iti;
+
+  if (phoneInput) {
+      phoneInput.value = "+7";
+
+      iti = window.intlTelInput(phoneInput, {
+          initialCountry: "ru",
+          preferredCountries: ["ru", "by", "kz", "ua", "uz"],
+          utilsScript: "https://cdn.jsdelivr.net/npm/intl-tel-input@23.0.12/build/js/utils.js",
+          autoPlaceholder: "aggressive",
+          nationalMode: false
+      });
+
+      const updateDialCode = () => {
+          if (iti && phoneInput && (!phoneInput.value.trim() || phoneInput.value.trim() === "+")) {
+              const countryData = iti.getSelectedCountryData();
+              if (countryData && countryData.dialCode) {
+                  phoneInput.value = "+" + countryData.dialCode + " ";
+              }
+          }
+      };
+
+      setTimeout(updateDialCode, 100);
+
+      phoneInput.addEventListener("countrychange", () => {
+          const countryData = iti.getSelectedCountryData();
+          if (countryData && countryData.dialCode) {
+              const dialCode = "+" + countryData.dialCode;
+              const currentValue = phoneInput.value.trim();
+              
+              if (!currentValue || currentValue === "+" || /^\+\d+\s*$/.test(currentValue)) {
+                  phoneInput.value = dialCode + " ";
+              } else {
+                  const cleanValue = phoneInput.value.replace(/^\+\d+\s*/, "");
+                  phoneInput.value = dialCode + " " + cleanValue;
+              }
+          }
+      });
+
+      phoneInput.addEventListener("focus", updateDialCode);
+  }
+
+  const modal = document.getElementById('app-modal');
+  const appForm = document.getElementById('app-form');
+  const submitBtn = document.getElementById('submit-btn');
+  const btnText = submitBtn ? submitBtn.querySelector('span') : null;
+  const btnSpinner = document.getElementById('btn-spinner');
+  const formMsg = document.getElementById('form-msg');
+  
+  const prevBtn = document.getElementById('quiz-prev-btn');
+  const nextBtn = document.getElementById('quiz-next-btn');
+  const navRow = document.getElementById('quiz-nav-controls');
+  const progressFill = document.getElementById('quiz-progress-fill');
+  const stepIndicator = document.getElementById('quiz-step-indicator');
+  const percentIndicator = document.getElementById('quiz-percent-indicator');
+
+  let currentStep = 1;
+  const totalSteps = 5;
+  
+  let redirectTimeout = null;
+  let redirectInterval = null;
+  let isNativelySubmitting = false;
+  let hasOpenedOrSubmitted = false;
+
+  function openModal() {
+      hasOpenedOrSubmitted = true;
+      if (modal) modal.classList.add('active');
+      document.body.style.overflow = 'hidden';
+      resetQuiz();
+  }
+
+  window.closeModal = function() {
+      if (modal) modal.classList.remove('active');
+      document.body.style.overflow = '';
+      
+      isNativelySubmitting = false;
+      if (redirectTimeout) clearTimeout(redirectTimeout);
+      if (redirectInterval) clearInterval(redirectInterval);
+      
+      setTimeout(() => {
+          if (formMsg) {
+              formMsg.className = 'form-message';
+              formMsg.style.display = 'none';
+          }
+          if (appForm) appForm.reset();
+          if (iti) {
+              iti.setCountry("ru");
+          }
+          if (phoneInput) {
+              phoneInput.value = "+7";
+          }
+          resetQuiz();
+
+          const modalTitle = document.querySelector('.modal-title');
+          const modalDesc = document.querySelector('.modal-desc');
+          const successState = document.getElementById('quiz-success-state');
+          const redirectProgress = document.querySelector('.redirect-progress-fill');
+
+          if (modalTitle) modalTitle.style.display = 'block';
+          if (modalDesc) modalDesc.style.display = 'block';
+          
+          if (appForm) {
+              appForm.style.display = '';
+              appForm.style.position = '';
+              appForm.style.opacity = '';
+              appForm.style.pointerEvents = '';
+              appForm.style.height = '';
+              appForm.style.overflow = '';
+          }
+          
+          if (successState) successState.style.display = 'none';
+          if (redirectProgress) {
+              redirectProgress.style.transition = 'none';
+              redirectProgress.style.width = '0%';
+          }
+      }, 300);
   };
 
-  const closeModal = () => {
-    leadModal.classList.remove('open');
-    document.body.style.overflow = ''; // Restore scroll
-  };
+  if(modal) {
+      modal.addEventListener('click', window.closeModal);
+  }
 
-  openModalBtns.forEach(btn => {
-    btn.addEventListener('click', openModal);
+  function showStep(stepNum) {
+      currentStep = stepNum;
+      
+      document.querySelectorAll('.quiz-step').forEach(step => {
+          step.classList.remove('active');
+      });
+      const activeStep = document.querySelector(`.quiz-step[data-step="${stepNum}"]`);
+      if (activeStep) {
+          activeStep.classList.add('active');
+      }
+
+      const percent = Math.round((stepNum / totalSteps) * 100);
+      let stepLabel = `Шаг ${stepNum} из ${totalSteps}`;
+      if (stepNum === 1) {
+          stepLabel = `Шаг 1 из 5: Уровень AI`;
+      } else if (stepNum === 2) {
+          stepLabel = `Шаг 2 из 5: Мотивация`;
+      } else if (stepNum === 3) {
+          stepLabel = `Шаг 3 из 5: Цели`;
+      } else if (stepNum === 4) {
+          stepLabel = `Шаг 4 из 5: Готовность`;
+      } else if (stepNum === 5) {
+          stepLabel = `Шаг 5 из 5: Заполнение данных`;
+      }
+      if (progressFill) progressFill.style.width = `${percent}%`;
+      if (stepIndicator) stepIndicator.textContent = stepLabel;
+      if (percentIndicator) percentIndicator.textContent = `${percent}%`;
+
+      if (stepNum === 1) {
+          if (prevBtn) prevBtn.style.display = 'none';
+      } else {
+          if (prevBtn) prevBtn.style.display = 'block';
+      }
+
+      const submitControls = document.getElementById('quiz-submit-controls');
+      if (stepNum === 5) {
+          if (navRow) navRow.style.display = 'none';
+          if (submitControls) submitControls.style.display = 'flex';
+          if (phoneInput && (!phoneInput.value.trim() || phoneInput.value.trim() === "+")) {
+              if (iti) {
+                  const countryData = iti.getSelectedCountryData();
+                  if (countryData && countryData.dialCode) {
+                      phoneInput.value = "+" + countryData.dialCode + " ";
+                  } else {
+                      phoneInput.value = "+7 ";
+                  }
+              } else {
+                  phoneInput.value = "+7 ";
+              }
+          }
+      } else {
+          if (navRow) navRow.style.display = 'flex';
+          if (submitControls) submitControls.style.display = 'none';
+      }
+
+      validateStep(stepNum);
+  }
+
+  function validateStep(stepNum) {
+      if (stepNum === 5) {
+          if (nextBtn) nextBtn.disabled = false;
+          return;
+      }
+
+      let isValid = false;
+
+      if (stepNum === 1) {
+          const val = document.getElementById('quiz-q1-value').value;
+          isValid = (val !== '');
+      } else if (stepNum === 2) {
+          const textarea = document.getElementById('quiz-q2-textarea');
+          isValid = (textarea && textarea.value.trim().length > 0);
+      } else if (stepNum === 3) {
+          const textarea = document.getElementById('quiz-q3-textarea');
+          isValid = (textarea && textarea.value.trim().length > 0);
+      } else if (stepNum === 4) {
+          const val = document.getElementById('quiz-q4-value').value;
+          isValid = (val !== '');
+      }
+
+      if (nextBtn) {
+          nextBtn.disabled = !isValid;
+      }
+  }
+
+  function resetQuiz() {
+      currentStep = 1;
+      document.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+      const q1 = document.getElementById('quiz-q1-value');
+      const q4 = document.getElementById('quiz-q4-value');
+      if (q1) q1.value = '';
+      if (q4) q4.value = '';
+      const q2 = document.getElementById('quiz-q2-textarea');
+      const q3 = document.getElementById('quiz-q3-textarea');
+      if (q2) q2.value = '';
+      if (q3) q3.value = '';
+
+      showStep(1);
+  }
+
+  document.querySelectorAll('.quiz-option').forEach(button => {
+      button.addEventListener('click', function(e) {
+          e.preventDefault();
+          const parent = this.closest('.quiz-step');
+          const stepNum = parseInt(parent.getAttribute('data-step'));
+          const value = this.getAttribute('data-value');
+
+          parent.querySelectorAll('.quiz-option').forEach(opt => opt.classList.remove('selected'));
+          this.classList.add('selected');
+
+          if (stepNum === 1) {
+              document.getElementById('quiz-q1-value').value = value;
+          } else if (stepNum === 4) {
+              document.getElementById('quiz-q4-value').value = value;
+          }
+
+          validateStep(stepNum);
+      });
   });
 
-  closeModalBtn.addEventListener('click', closeModal);
+  const q2Textarea = document.getElementById('quiz-q2-textarea');
+  if (q2Textarea) {
+      q2Textarea.addEventListener('input', () => validateStep(2));
+  }
+  const q3Textarea = document.getElementById('quiz-q3-textarea');
+  if (q3Textarea) {
+      q3Textarea.addEventListener('input', () => validateStep(3));
+  }
 
-  // Close modal when clicking outside of the form card
-  leadModal.addEventListener('click', (e) => {
-    if (e.target === leadModal) {
-      closeModal();
-    }
+  if (prevBtn) {
+      prevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (currentStep > 1) {
+              showStep(currentStep - 1);
+          }
+      });
+  }
+
+  const step5PrevBtn = document.getElementById('quiz-step5-prev-btn');
+  if (step5PrevBtn) {
+      step5PrevBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          showStep(4);
+      });
+  }
+
+  if (nextBtn) {
+      nextBtn.addEventListener('click', (e) => {
+          e.preventDefault();
+          if (currentStep < 5) {
+              showStep(currentStep + 1);
+          }
+      });
+  }
+
+  document.querySelectorAll('.open-modal-btn').forEach(btn => {
+      btn.addEventListener('click', (e) => {
+          e.preventDefault();
+          openModal();
+      });
   });
 
-  // Handle Form Submission
-  leadForm.addEventListener('submit', (e) => {
-    e.preventDefault();
-    const name = document.getElementById('leadName').value;
-    const email = document.getElementById('leadEmail').value;
-    const countryCode = document.getElementById('leadCountry').value;
-    const phone = document.getElementById('leadPhone').value;
+  if(appForm) {
+      appForm.addEventListener('submit', function(e) {
+          e.preventDefault();
+          
+          if (iti && phoneInput) {
+              phoneInput.value = iti.getNumber();
+          }
+          
+          const accessKeyField = document.getElementById('web3forms-access-key');
+          if (accessKeyField) {
+              accessKeyField.value = WEB3FORMS_ACCESS_KEY;
+          }
 
-    const submitBtn = document.getElementById('submitBtn');
-    submitBtn.textContent = 'Обработка...';
-    submitBtn.disabled = true;
+          if (submitBtn) submitBtn.disabled = true;
+          if (btnText) btnText.textContent = 'Отправка...';
+          if (btnSpinner) btnSpinner.style.display = 'block';
+          if (formMsg) formMsg.style.display = 'none';
 
-    // Simulate sending data to API / Telegram bot
-    setTimeout(() => {
-      // Create a nice success UI replacement inside the modal
-      const fbmCard = document.querySelector('.fbm');
-      fbmCard.innerHTML = `
-        <div class="center" style="padding: 20px 0;">
-          <svg viewBox="0 0 24 24" width="64" height="64" fill="none" stroke="#22c55e" stroke-width="2.5" style="margin-bottom: 20px;">
-            <circle cx="12" cy="12" r="10"></circle>
-            <polyline points="22 4 12 14.01 9 11.01"></polyline>
-          </svg>
-          <h3 class="h3-22 mb8">Регистрация успешна!</h3>
-          <p class="body-m muted mb20">Система AI HUSTLER отправлена вам. Проверьте ваш Telegram или перейдите по ссылке ниже:</p>
-          <a href="https://t.me/ai_hustlers_bot" target="_blank" class="btn-primary" style="text-decoration:none; animation:none; width:100%; display:flex;">
-            Открыть обучение в Telegram
-          </a>
-        </div>
-      `;
-    }, 1500);
-  });
+          const modalTitle = document.querySelector('.modal-title');
+          const modalDesc = document.querySelector('.modal-desc');
+          if (modalTitle) modalTitle.style.display = 'none';
+          if (modalDesc) modalDesc.style.display = 'none';
+          
+          appForm.style.position = 'absolute';
+          appForm.style.opacity = '0';
+          appForm.style.pointerEvents = 'none';
+          appForm.style.height = '0';
+          appForm.style.overflow = 'hidden';
+          
+          const successState = document.getElementById('quiz-success-state');
+          if (successState) {
+              successState.style.display = 'flex';
+          }
+          
+          const telegramBtn = document.getElementById('success-telegram-btn');
+          if (telegramBtn) {
+              telegramBtn.href = TELEGRAM_LINK;
+          }
+          
+          const redirectProgress = document.querySelector('.redirect-progress-fill');
+          if (redirectProgress) {
+              redirectProgress.style.transition = 'none';
+              redirectProgress.style.width = '0%';
+              setTimeout(() => {
+                  redirectProgress.style.transition = 'width 3s linear';
+                  redirectProgress.style.width = '100%';
+              }, 50);
+          }
+          
+          let countdown = 3;
+          const countdownEl = document.getElementById('redirect-countdown');
+          if (countdownEl) {
+              countdownEl.textContent = countdown;
+          }
+          
+          if (redirectInterval) clearInterval(redirectInterval);
+          redirectInterval = setInterval(() => {
+              countdown--;
+              if (countdownEl) {
+                  countdownEl.textContent = countdown;
+              }
+              if (countdown <= 0) {
+                  clearInterval(redirectInterval);
+              }
+          }, 1000);
+          
+          let isSubmitted = false;
+          let isTimerFinished = false;
+          
+          function tryRedirect() {
+              if (isSubmitted && isTimerFinished) {
+                  window.location.href = TELEGRAM_LINK;
+              }
+          }
+          
+          if (redirectTimeout) clearTimeout(redirectTimeout);
+          redirectTimeout = setTimeout(() => {
+              isTimerFinished = true;
+              tryRedirect();
+          }, 3000);
+          
+          const formData = new FormData(appForm);
+          const jsonObject = {};
+          formData.forEach((value, key) => {
+              jsonObject[key] = value;
+          });
+          
+          fetch('https://api.web3forms.com/submit', {
+              method: 'POST',
+              headers: {
+                  'Content-Type': 'application/json',
+                  'Accept': 'application/json'
+              },
+              body: JSON.stringify(jsonObject)
+          })
+          .then(response => response.json())
+          .then(data => {
+              if (data.success) {
+                  isSubmitted = true;
+                  tryRedirect();
+              } else {
+                  console.error('Submission failed:', data.message);
+                  isSubmitted = true;
+                  tryRedirect();
+              }
+          })
+          .catch(error => {
+              console.error('Error submitting form:', error);
+              isSubmitted = true;
+              tryRedirect();
+          });
+      });
+  }
+
+  // Автоматическое открытие модального окна через 45 секунд
+  setTimeout(() => {
+      if (!hasOpenedOrSubmitted) {
+          openModal();
+      }
+  }, 45000);
 
   // 2. Video Autoplay Trigger
   const videoContainer = document.getElementById('videoContainer');
   const videoOverlay = document.getElementById('videoOverlay');
-  const videoIframe = document.getElementById('videoIframe');
+  const heroVideo = document.getElementById('heroVideo');
 
-  videoOverlay.addEventListener('click', () => {
-    videoContainer.classList.add('playing');
-    // Change YouTube src to trigger autoplay
-    const currentSrc = videoIframe.src;
-    if (currentSrc.includes('?')) {
-      videoIframe.src = currentSrc + '&autoplay=1';
-    } else {
-      videoIframe.src = currentSrc + '?autoplay=1';
-    }
-  });
+  if (videoOverlay && heroVideo) {
+    videoOverlay.addEventListener('click', () => {
+      videoContainer.classList.add('playing');
+      heroVideo.play();
+    });
+  }
 
   // 3. Dynamic Image Autoloader Helper for user screenshots & dashboard
   function initAutoloader(selector) {
