@@ -2150,6 +2150,15 @@ h1, h2, h3 {
 .banner-m6 {
   background: radial-gradient(circle at center, #231b54 0%, #0a061c 100%);
 }
+.banner-m7 {
+  background: radial-gradient(circle at center, #5a4018 0%, #170f03 100%);
+}
+.banner-m8 {
+  background: radial-gradient(circle at center, #185a3c 0%, #03170f 100%);
+}
+.banner-m9 {
+  background: radial-gradient(circle at center, #661853 0%, #1a0314 100%);
+}
 
 /* Background overlay decorations (grid, gears, circles, etc.) */
 .banner-decor {
@@ -2229,4 +2238,17 @@ h1, h2, h3 {
   text-shadow: 0 2px 8px rgba(0, 0, 0, 0.4);
   margin-top: 2px;
   letter-spacing: 0.02em;
+}
+
+/* Countdown timer styling */
+.countdown-timer-line {
+  display: block;
+  text-align: center;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  color: var(--cta-primary-warm);
+  letter-spacing: 0.05em;
+  text-transform: uppercase;
+  text-shadow: none;
 }
